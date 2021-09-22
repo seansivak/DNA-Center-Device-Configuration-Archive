@@ -47,9 +47,6 @@ encodedLength = len(encodedUserPass) - 1
 encodedUserPass = encodedUserPass[2:encodedLength]
 encodedUserPass = "Basic "+encodedUserPass
 
-#print(encodedUserPass)
-#time.sleep(60)
-
 # Specify the URL to create a token
 tokenURL = "https://"+dnacServer+"/dna/system/api/v1/auth/token"
 # Create the header used to create the token
@@ -106,11 +103,8 @@ taskResponseDict = taskResponse_json["response"]
 for x,y in taskResponseDict.items():
     if x == 'url':
         myTaskURL = y
-###response = requests.get(url, headers=headers, data = payload, verify=False)
-###response_json = response.json()
-###deviceIdList = response_json["response"]
-# Get the file information from the taskId
 
+# Get the file information from the taskId
 fileURL = "https://"+dnacServer+"/dna/intent"+myTaskURL
 payload={}
 # This will continue to run the request until the task run earlier completes
