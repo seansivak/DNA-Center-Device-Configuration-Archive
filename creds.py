@@ -1,0 +1,3 @@
+myUserName = 'admin'
+myPassword = 'password'
+
