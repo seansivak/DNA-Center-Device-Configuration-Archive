@@ -61,7 +61,7 @@ myTokenResponse = requests.post(tokenURL, headers=headersToken, verify=False)
 myTokenDict = myTokenResponse.json()
 # Creating a token returns a Dictionary where the attribute is Token and the value is the actual token
 myToken = myTokenDict['Token']
-
+print("********************************************DNA Center Device Archive********************************************")
 # Get list of Device IDs 
 url = "https://"+dnacServer+"/dna/intent/api/v1/network-device"
 payload = {}
@@ -99,8 +99,6 @@ postHeaders = {
   'Authorization': encodedUserPass,
   'Content-Type': 'application/json',
 }
-#####################################################################################
-print("********************************************DNA Center Device Archive********************************************")
 
 taskResponse = requests.request("POST", taskURL, headers=postHeaders, data=payload, verify=False)
 taskResponse_json = taskResponse.json()
