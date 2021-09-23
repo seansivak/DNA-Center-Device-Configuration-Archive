@@ -88,7 +88,7 @@ formattedDeviceList = ', '.join('"{0}"'.format(i) for i in myDeviceList)
 
 # This creates the tasks required to archive the configs
 taskURL = "https://"+dnacServer+"/dna/intent/api/v1/network-device-archive/cleartext"
-payload="{\"deviceId\": ["+formattedDeviceList+"],\"password\": \"Password1!\"}"
+payload="{\"deviceId\": ["+formattedDeviceList+"],\"password\": \"Cisco123\"}"
 #payload={"deviceId":"+myDeviceList+",""password":"Password1!"}
 
 postHeaders = {
