@@ -29,9 +29,9 @@ countResults = 0
 # Suppress Insecure Requests Warnings for self-signed certificate on DNA Center
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 # Specify the DNA Center Server
-dnacServer = "172.21.21.10"
+#dnacServer = "172.21.21.10"
 # Prompt the user for the DNA Center Server
-#dnacServer = input('Enter DNA Center Server IP Address:\n')
+dnacServer = input('Enter DNA Center Server IP Address:\n')
 
 # Username and password used to create the token
 myUserName = creds.myUserName
