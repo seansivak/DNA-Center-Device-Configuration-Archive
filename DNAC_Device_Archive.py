@@ -29,9 +29,9 @@ countResults = 0
 # Suppress Insecure Requests Warnings for self-signed certificate on DNA Center
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 # Specify the DNA Center Server
-#dnacServer = "172.21.21.10"
+dnacServer = "172.21.21.10"
 # Prompt the user for the DNA Center Server
-dnacServer = input('Enter DNA Center Server IP Address:\n')
+#dnacServer = input('Enter DNA Center Server IP Address:\n')
 
 # Username and password used to create the token
 myUserName = creds.myUserName
@@ -88,9 +88,23 @@ formattedDeviceList = ', '.join('"{0}"'.format(i) for i in myDeviceList)
 
 # This creates the tasks required to archive the configs
 taskURL = "https://"+dnacServer+"/dna/intent/api/v1/network-device-archive/cleartext"
-payload="{\"deviceId\": ["+formattedDeviceList+"],\"password\": \"Cisco123\"}"
-#payload={"deviceId":"+myDeviceList+",""password":"Password1!"}
 
+while True:
+    print("Please Enter a password to encrypt the archive.")
+    print("The password must contain upper and lower case letters, a number, and one of the following: ';,./~!@#$%^&*()_+{}[]|:?'")
+    print("***BEWARE***  Your password will appear in plain text while typing.")
+    myPass1 = input("Password:> ")
+    myPass2 = input("Confirm: >")
+
+    if myPass1 == myPass2:
+        break
+    else:
+        print("Password do not match. Try again.")
+
+payload="{\"deviceId\": ["+formattedDeviceList+"],\"password\":\""+myPass1+"\"}"
+#payload={"deviceId":"+myDeviceList+",""password":"Password1!"}
+print(payload)
+time.sleep(10)
 postHeaders = {
   'X-Auth-Token': myToken,
   'Authorization': encodedUserPass,
@@ -110,7 +124,6 @@ payload={}
 # This will continue to run the request until the task run earlier completes
 attempts = 0
 while True:
-    time.sleep(5)
     attempts = attempts + 1
     fileResponse = requests.get(fileURL, headers=headers, data = payload, verify=False)
     fileResponse_json = fileResponse.json()
